@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sacred Travel Destinations</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@1,300&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(180deg, rgba(15,10,8,0.9), rgba(0,0,0,0.92));
+        padding: 40px 20px;
+        color: #e8d8be;
+        font-family: 'Lora', serif;
+    }
+
+    h1 {
+        font-family: 'Cinzel', serif;
+        text-align: center;
+        color: #e8d8be;
+        margin-bottom: 40px;
+    }
+
+    .place-card {
+        background: linear-gradient(135deg, rgba(32,25,18,0.92), rgba(70,50,35,0.92));
+        border: 2px solid rgba(199,159,101,0.4);
+        border-radius: 18px;
+        padding: 35px;
+        transition: 0.4s ease;
+        cursor: pointer;
+        min-height: 200px;
+        text-align: center;
+    }
+
+    .place-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 12px 30px rgba(199,159,101,0.35);
+        border-color: #C79F65;
+    }
+
+    .place-card h2 {
+        font-family: 'Cinzel', serif;
+        color: #C79F65;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .place-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Sacred Destinations of the World</h1>
+
+<div class="place-grid">
+
+    <!-- INDIA -->
+    <a href="https://www.makemytrip.com/tripideas/pilgrimage-destinations" 
+       target="_blank" style="text-decoration:none;">
+        <div class="place-card">
+            <h2>Indian Sacred Destinations</h2>
+            <p>Varanasi, Rishikesh, Kedarnath, Bodh Gaya, Kanchipuram & more</p>
+        </div>
+    </a>
+
+    <!-- GREECE -->
+    <a href="https://www.makemytrip.com/tripideas/pilgrimage-destinations" 
+       target="_blank" style="text-decoration:none;">
+        <div class="place-card">
+            <h2>Greek Sacred Destinations</h2>
+            <p>Delphi, Mount Athos, Eleusis, Parthenon & ancient sites</p>
+        </div>
+    </a>
+
+    <!-- JAPAN -->
+    <a href="https://www.makemytrip.com/tripideas/pilgrimage-destinations" 
+       target="_blank" style="text-decoration:none;">
+        <div class="place-card">
+            <h2>Japanese Sacred Destinations</h2>
+            <p>Koyasan, Fushimi Inari, Ise Shrine & Zen temples</p>
+        </div>
+    </a>
+
+    <!-- TURKEY -->
+    <a href="https://www.makemytrip.com/tripideas/pilgrimage-destinations" 
+       target="_blank" style="text-decoration:none;">
+        <div class="place-card">
+            <h2>Turkish Sacred Destinations</h2>
+            <p>Rumi’s Tomb, Hagia Sophia, Göbekli Tepe & more</p>
+        </div>
+    </a>
+
+    <!-- CHINA -->
+    <a href="https://www.makemytrip.com/tripideas/pilgrimage-destinations" 
+       target="_blank" style="text-decoration:none;">
+        <div class="place-card">
+            <h2>Chinese Sacred Destinations</h2>
+            <p>Mount Tai, Shaolin Temple, Wudang Mountains & more</p>
+        </div>
+    </a>
+
+</div>
+
+
+</body>
+</html>

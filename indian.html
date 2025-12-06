@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Indian Thinkers — Wisdom Library</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #3b2a1b, #6a4a2d);
+            font-family: 'Lora', serif;
+            color: #e8d8be;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 45px;
+            font-family: 'Cinzel';
+            color: #C79F65;
+        }
+
+        .thinker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .thinker-card {
+            background: linear-gradient(135deg, rgba(60,45,30,0.9), rgba(90,65,40,0.9));
+            padding: 30px;
+            border-radius: 18px;
+            border: 2px solid rgba(199,159,101,0.4);
+            text-align: center;
+            transition: 0.35s ease;
+            cursor: pointer;
+        }
+
+        .thinker-card:hover {
+            transform: translateY(-10px);
+            border-color: #C79F65;
+            box-shadow: 0px 12px 28px rgba(199,159,101,0.25);
+        }
+
+        .thinker-name {
+            font-size: 1.7rem;
+            font-family: 'Cinzel';
+            color: #C79F65;
+            margin-bottom: 8px;
+        }
+
+        .thinker-desc {
+            font-size: 1rem;
+            color: #e7dac7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+<h1>Indian / Hindu Wisdom — Thinkers</h1>
+
+<div class="thinker-grid">
+
+    <!-- KRISHNA -->
+    <a href="krishna.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Krishna</div>
+            <div class="thinker-desc">Voice of the Gita — teacher of Dharma & devotion</div>
+        </div>
+    </a>
+
+    <!-- VYASA -->
+    <a href="vyasa.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Vyasa</div>
+            <div class="thinker-desc">Compiler of Vedas, author of Mahabharata</div>
+        </div>
+    </a>
+
+    <!-- SHANKARACHARYA -->
+    <a href="shankaracharya.html" target="wisdomFrame">
+        <div class="thinker-card" id="shan">
+            <div class="thinker-name">Adi Shankarachary</div>
+            <div class="thinker-desc">Master of Advaita — non-dual wisdom</div>
+        </div>
+    </a>
+
+    <!-- PATANJALI -->
+    <a href="patanjali.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Patanjali</div>
+            <div class="thinker-desc">Author of Yoga Sutras — path of inner discipline</div>
+        </div>
+    </a>
+
+    <!-- ASHTAVAKRA -->
+    <a href="ashtavakra.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Ashtavakra</div>
+            <div class="thinker-desc">Sage of pure non-duality — Ashtavakra Gita</div>
+        </div>
+    </a>
+
+    <!-- RAMANA MAHARSHI -->
+    <a href="ramana.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Ramana Maharshi</div>
+            <div class="thinker-desc">Master of Self-inquiry — “Who am I?”</div>
+        </div>
+    </a>
+
+    <!-- JIDDU KRISHNAMURTI -->
+    <a href="krishnamurti.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">J. Krishnamurti</div>
+            <div class="thinker-desc">Teacher of freedom from conditioning</div>
+        </div>
+    </a>
+
+    <!-- OSHO -->
+    <a href="osho.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Osho</div>
+            <div class="thinker-desc">Mystic of meditation, rebellion, and clarity</div>
+        </div>
+    </a>
+
+    <!-- ACHARYA PRASHANT -->
+    <a href="acharyaprashant.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Acharya Prashant</div>
+            <div class="thinker-desc">Contemporary voice of truth & clarity</div>
+        </div>
+    </a>
+
+    <!-- VIVEKANANDA -->
+    <a href="vivekananda.html" target="wisdomFrame">
+        <div class="thinker-card">
+            <div class="thinker-name">Swami Vivekananda</div>
+            <div class="thinker-desc">Icon of strength, Vedanta, service</div>
+        </div>
+    </a>
+
+</div>
+
+</body>
+</html>

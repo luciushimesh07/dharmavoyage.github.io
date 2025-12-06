@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>DharmaVoyage</title>
+    
+    <style>
+        #pageWrapper {
+            height: 100vh;
+            overflow: hidden;
+        }
+        #enterToggle:checked ~ #pageWrapper {
+            height: auto;
+            overflow-y: auto;
+        }
+        body {
+            margin: 0;
+            background-image:
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.70)),
+                url("https://upload.wikimedia.org/wikipedia/commons/5/54/Album_of_18_Daoist_Paintings_-_2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #voyage {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 400ms ease-in-out;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 20;
+        }
+        #enterToggle:checked ~ #pageWrapper #voyage {
+            opacity: 1;
+            pointer-events: auto;
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        .hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 50;
+            transition: opacity 400ms ease-in-out;
+        }
+        #enterToggle:checked ~ #pageWrapper .hero {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4.2rem;
+            color: #dfd0bd;
+            text-shadow: 0px 2px 6px rgba(0,0,0,0.4);
+        }
+        .hero-tagline {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: #e7dac7;
+            margin-top: 10px;
+            text-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+        }
+        .btn-custom {
+            background-color: #C79F65;
+            color: #fff;
+            padding: 10px 30px;
+            margin-top: 25px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .btn-custom:hover { background-color: #A9824A; }
+        .bird {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            opacity: 1;
+            transition: opacity 300ms ease;
+            z-index: 40;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 30 Q25 10 40 30 Q55 10 70 30' stroke='black' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        }
+        #enterToggle:checked ~ #pageWrapper .bird {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        @keyframes fly { 0% { transform: translateX(-20vw); } 100% { transform: translateX(120vw); } }
+        .bird1 { top: 14vh; animation: fly 26s linear infinite; }
+        .bird2 { top: 23vh; animation: fly 30s linear infinite; transform: scale(1.85); }
+        .bird3 { top: 31vh; animation: fly 34s linear infinite; transform: scale(1.2); }
+        .bird4 { top: 55vh; animation: fly 32s linear infinite; }
+        .bird5 { top: 68vh; animation: fly 38s linear infinite; transform: scale(1.2); }
+        .thinker-slide {
+            height: 100vh;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        .quote-box {
+            background-color: rgba(0,0,0,0.55);
+            padding: 35px;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .thinker-quote {
+            font-family: 'Lora', serif;
+            font-size: 2.1rem;
+            color: #f2e6d2;
+            line-height: 1.6;
+        }
+        .thinker-attrib {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            color: #e6d7b2;
+        }
+        .category-card {
+            background: linear-gradient(135deg, rgba(40,30,20,0.9), rgba(70,50,30,0.9));
+            border: 2px solid rgba(199,159,101,0.4);
+            border-radius: 18px;
+            padding: 40px 25px;
+            transition: 0.4s ease;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            min-height: 280px;
+        }
+        .category-card h2 {
+            font-family: 'Cinzel', serif;
+            color: #C79F65;
+            font-size: 2.1rem;
+            margin-bottom: 12px;
+        }
+        .category-card p {
+            font-family: 'Lora', serif;
+            color: #e8d8be;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 12px 28px rgba(199,159,101,0.3);
+            border-color: #C79F65;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        .category-grid > a {
+            text-decoration: none;
+        }
+        
+        /* IFRAME STYLING */
+        #wisdomFrame {
+            width: 100%;
+            height: 900px;
+            border: 2px solid rgba(199,159,101,0.3);
+            border-radius: 15px;
+            background: rgba(0,0,0,0.2);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    
+
+<input type="checkbox" id="enterToggle" hidden>
+
+<div id="pageWrapper">
+    <div id="voyage">
+        <div id="thinkerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" style="height:100vh;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="4"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="5"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="6"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="7"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="8"></button>
+                <button type="button" data-bs-target="#thinkerCarousel" data-bs-slide-to="9"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://smarthistory.org/wp-content/uploads/2021/03/DP231327.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"The mind is everything: it can lead you to bondage, and it can bring you to liberation."</p>
+                            <p class="thinker-attrib">— Krishna</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://ajabshahar.com/images/Stories/Sy_ImaginingKabir/Sy_ImaginingKabir_03.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"Where do you search me? I am with you."</p>
+                            <p class="thinker-attrib">— Kabir</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://excellencereporter.com/wp-content/uploads/2020/12/ethics-centre_big-thinkers-rumi.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"What you seek is seeking you."</p>
+                            <p class="thinker-attrib">— Rumi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://cimg.acharyaprashant.org/images/img-d4dc3b5e-8bf6-47a7-a58d-f60cca3790d7/30/image.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"You are bound only by the habit of looking outside. Turn within and be free."</p>
+                            <p class="thinker-attrib">— Ashtavakra</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://i0.wp.com/iasnext.com/wp-content/uploads/2023/12/Adi-Shankaracharya.webp');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"The Self is everywhere, shining always. When the mind becomes still, it is revealed."</p>
+                            <p class="thinker-attrib">— Adi Shankaracharya</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://www.namasteindiatrip.com/blog/wp-content/uploads/2023/12/Who-is-Buddhism.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"Peace comes from within. Do not seek it outside yourself."</p>
+                            <p class="thinker-attrib">— Gautama Buddha</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/death-of-socrates');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"The unexamined life is not worth living."</p>
+                            <p class="thinker-attrib">— Socrates</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://www.worldhistory.org/img/c/p/1600x900/996.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"When you realize nothing is lacking, the whole world belongs to you."</p>
+                            <p class="thinker-attrib">— Lao Tzu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://knowledge.wharton.upenn.edu/wp-content/uploads/2019/05/Marcus-Aurelius-900x387.jpg');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"The happiness of your life depends upon the quality of your thoughts."</p>
+                            <p class="thinker-attrib">— Marcus Aurelius</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="thinker-slide d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://www.tallengestore.com/cdn/shop/products/Miyamoto_Musashi_Fights_Sasaki_Ganryu_-_Utagawa_Yoshitora_01b1ad67-9e00-4ecb-9a4b-81e59dc3376c.jpg?v=1570159279');">
+                        <div class="quote-box text-center">
+                            <p class="thinker-quote">"Perceive that which cannot be seen with the eye."</p>
+                            <p class="thinker-attrib">— Miyamoto Musashi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#thinkerCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#thinkerCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <section id="wisdom-section" style="padding:80px 20px 100px; min-height:100vh; background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(20,15,10,0.85) 100%);">
+            <div style="max-width:1200px; margin:0 auto;">
+                <h2 style="font-family:'Cinzel'; font-size:3.5rem; color:#e8d8be; text-align:center;">The Sacred Library of Wisdom</h2>
+                <p style="font-family:'Lora'; font-size:1.2rem; color:#d4c4a8; text-align:center; max-width:700px; margin:0 auto 60px; font-style:italic;">"Wisdom is not a product of schooling but of the lifelong attempt to acquire it."</p>
+                
+                <div class="category-grid">
+                    <a href="indian.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Indian / Hindu Wisdom</h2>
+                            <p>Explore the profound teachings of Vedanta, Yoga, and Bhakti traditions</p>
+                        </div>
+                    </a>
+                    <a href="buddhist.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Buddhist Wisdom</h2>
+                            <p>Journey through the path of enlightenment and mindful awareness</p>
+                        </div>
+                    </a>
+                    <a href="taoist.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Taoist / Chinese Wisdom</h2>
+                            <p>Discover the harmony of the Tao and the balance of opposites</p>
+                        </div>
+                    </a>
+                    <a href="japanese.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Japanese Wisdom</h2>
+                            <p>Experience the way of the warrior and Shinto spirituality</p>
+                        </div>
+                    </a>
+                    <a href="greek.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Greek Philosophy</h2>
+                            <p>Contemplate virtue, reason, and the examined life</p>
+                        </div>
+                    </a>
+                    <a href="sufism.html" target="wisdomFrame">
+                        <div class="category-card">
+                            <h2>Islamic Mysticism (Sufism)</h2>
+                            <p>Embrace divine love and the mystical union with the Beloved</p>
+                        </div>
+                    </a>
+
+                   
+
+                </div>
+
+                <iframe name="wisdomFrame" id="wisdomFrame"></iframe>
+            </div>
+        </section>
+
+        <!-- NEW IFRAME PLACED AFTER ORIGINAL WISDOM SECTION (extraFrame) -->
+        <section id="extras-section" style="padding:40px 20px 90px; background: linear-gradient(180deg, rgba(15,10,8,0.85), rgba(0,0,0,0.9));">
+    <div style="max-width:1200px; margin:0 auto;">
+
+        <!-- TWO CARDS MOVED HERE (ABOVE Explore More) -->
+        <div class="category-grid">
+
+           <a href="destinations.html" target="extraFrame" style="text-decoration:none;">
+
+                <div class="category-card" style="
+                    background: linear-gradient(135deg, rgba(85,0,140,0.92), rgba(40,30,130,0.92), rgba(0,90,160,0.92));
+                    border: 2px solid rgba(180,150,255,0.4);
+                    margin-top: 25px;
+                    padding: 50px 30px;
+                ">
+                    <h2 style="color:#e8d8ff;">Travel to Sacred Destinations</h2>
+                    <p style="color:#f3eaff;">Journey through the world’s sacred temples, mountains, shrines, and ancient pilgrimage routes</p>
+                </div>
+            </a>
+
+           <a href="books.html" target="extraFrame" style="text-decoration:none;">
+
+    <div class="category-card" style="
+        background: linear-gradient(135deg, rgba(150,0,20,0.92), rgba(200,20,40,0.92), rgba(255,80,80,0.92));
+        border: 2px solid rgba(255,150,150,0.4);
+        margin-top: 30px;
+        padding: 50px 30px;
+    ">
+        <h2 style="color:#ffe6e6;">Buy Your Favourite Philosopher Books</h2>
+        <p style="color:#ffefef;">Explore curated collections of timeless philosophical works from great thinkers worldwide</p>
+    </div>
+</a>
+
+
+        </div>
+
+        <!-- TITLE BELOW THE TWO CARDS -->
+        <h2 style="font-family:'Cinzel'; font-size:2.6rem; color:#e8d8be; text-align:center; margin-top:60px;">
+            Explore More
+        </h2>
+
+        <p style="font-family:'Lora'; font-size:1.05rem; color:#d4c4a8; text-align:center; max-width:700px; margin:0 auto 30px; font-style:italic;">
+            Sacred journeys and timeless books — content from the two cards above will open here.
+        </p>
+
+        <!-- EXTRA IFRAME -->
+        <iframe 
+            name="extraFrame"
+            id="extraFrame"
+            style="
+                width:100%;
+                height:720px;
+                border:2px solid rgba(199,159,101,0.3);
+                border-radius:15px;
+                background:rgba(0,0,0,0.25);
+                margin-top:30px;
+            ">
+        </iframe>
+
+    </div>
+</section>
+
+
+    </div>
+
+    <div class="hero">
+        <h1 class="hero-title">DHARMAVOYAGE</h1>
+        <p class="hero-tagline">Where Ancient Wisdom Sets Sail</p>
+        <label for="enterToggle" class="btn btn-custom btn-lg">Enter the Voyage</label>
+    </div>
+
+    <div class="bird bird1"></div>
+    <div class="bird bird2"></div>
+    <div class="bird bird3"></div>
+    <div class="bird bird4"></div>
+    <div class="bird bird5"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

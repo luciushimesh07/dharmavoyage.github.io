@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <title>Greek Philosophy</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #0a1f3f, #305c99);
+            font-family: 'Cinzel', serif;
+            color: #d9e9ff;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 45px;
+            color: #9cc4ff;
+        }
+
+        .thinker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .thinker-card {
+            background: linear-gradient(135deg, rgba(20,45,90,0.85), rgba(60,110,170,0.85));
+            border: 2px solid rgba(79,139,209,0.35);
+            border-radius: 18px;
+            padding: 30px;
+            transition: 0.35s ease;
+            text-align: center;
+        }
+
+        .thinker-card:hover {
+            transform: translateY(-12px);
+            border-color: #4f8bd1;
+            box-shadow: 0 12px 26px rgba(79,139,209,0.35);
+        }
+
+        .thinker-name {
+            font-size: 1.8rem;
+            color: #c5ddff;
+            margin-bottom: 10px;
+        }
+
+        .thinker-desc {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            color: #e6efff;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Greek Philosophy</h1>
+
+<div class="thinker-grid">
+
+   <div class="thinker-grid">
+
+    <a href="socrates.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Socrates</div>
+            <p class="thinker-desc">Father of Western philosophy; teacher of inquiry and introspection.</p>
+        </div>
+    </a>
+
+    <a href="plato.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Plato</div>
+            <p class="thinker-desc">Founder of the Academy; philosopher of forms and idealism.</p>
+        </div>
+    </a>
+
+    <a href="aristotle.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Aristotle</div>
+            <p class="thinker-desc">Master of logic, ethics, and scientific methodology.</p>
+        </div>
+    </a>
+
+    <a href="heraclitus.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Heraclitus</div>
+            <p class="thinker-desc">Philosopher of change — “You cannot step into the same river twice.”</p>
+        </div>
+    </a>
+
+    <a href="epictetus.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Epictetus</div>
+            <p class="thinker-desc">Stoic teacher of discipline, resilience, and inner freedom.</p>
+        </div>
+    </a>
+
+    <a href="marcusaurelius.html" target="wisdomFrame" style="text-decoration:none;">
+        <div class="thinker-card">
+            <div class="thinker-name">Marcus Aurelius</div>
+            <p class="thinker-desc">Stoic emperor emphasizing responsibility, clarity, and virtue.</p>
+        </div>
+    </a>
+
+</div>
+
+
+</body>
+</html>
